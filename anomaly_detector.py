@@ -1,13 +1,6 @@
 import json
 
-def identify_anomalies(random_flow_file, filtered_timeline_file, client):
-    
-    with open(random_flow_file, "r") as file:
-        random_flow = json.load(file)
-        
-    with open(filtered_timeline_file, "r") as file:
-        filtered_timeline = json.load(file)
-    
+def identify_anomalies(random_flow, filtered_timeline, client):
     
     input_text = f"""
     Identify anomalies in machine operations based on the expected flow and actual operations.
@@ -47,7 +40,6 @@ def identify_anomalies(random_flow_file, filtered_timeline_file, client):
         ]
     }}
     """
-    
     
     response = client.chat.completions.create(
         model="gpt-4o-2024-08-06",
@@ -136,7 +128,6 @@ def identify_anomalies(random_flow_file, filtered_timeline_file, client):
             }
         }
     )
-    
     
     response_text = response.choices[0].message.content.strip()
     
