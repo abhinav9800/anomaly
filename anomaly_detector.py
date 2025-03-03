@@ -134,13 +134,11 @@ def identify_anomalies(random_flow, filtered_timeline, client):
     return response_text
 
 def filter_anomalies(anomalies):
-    # Filter out entries in FlowAnomalies where Machine equals Expected Machine
     anomalies["FlowAnomalies"] = [
         anomaly for anomaly in anomalies["FlowAnomalies"] 
         if anomaly["Machine"] != anomaly["Expected Machine"]
     ]
 
-    # Filter out entries in DurationAnomalies where Expected Duration equals Actual Duration
     anomalies["DurationAnomalies"] = [
         anomaly for anomaly in anomalies["DurationAnomalies"] 
         if anomaly["Expected Duration"] != anomaly["Actual Duration"]
